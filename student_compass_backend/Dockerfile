@@ -30,4 +30,6 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # ---------- Run Server ----------
-CMD ["gunicorn", "student_compass.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
+CMD ["/app/entrypoint.sh"]
